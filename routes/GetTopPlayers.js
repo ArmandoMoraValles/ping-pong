@@ -14,6 +14,12 @@ router.get('/GetTopPlayers', async(req,res)=>{
         ORDER BY num_of_wins DESC LIMIT 3;`
 
     const data = await query(sql)
+        .catch((err)=>{
+            console.log(err)
+            res.sendStatus(500)
+        })
+    if(res.headersSent) return
+
     data.forEach(element => idTopPlayers.push(element.id))
     
     sql = `SELECT p.player_name, 
@@ -25,6 +31,11 @@ router.get('/GetTopPlayers', async(req,res)=>{
             GROUP BY p.player_name;`
 
     const playersName = await query(sql, idTopPlayers)     
+        .catch((err) => {
+            console.log(err)
+            res.sendStatus(500)
+        })
+    if(res.headersSent) return
 
     playersName.forEach(element => {
         topPlayers.push({

@@ -20,12 +20,14 @@ router.get('/GamesHistory', async(req,res)=> {
                 LEFT JOIN players pwiner
                     ON s.winner_player_id = pwiner.id;`
 
-    const gamesHistory = await query(sql).catch((err) => {
-        if(err) console.log(err)
-        res.sendStatus(500)
-    })
+    const gamesHistory = await query(sql)
+        .catch((err) => {
+            if(err) console.log(err)
+            res.sendStatus(500)
+        })
+    if(res.headersSent) return    
 
-    res.status(200).json(gamesHistory)
+    res.json(gamesHistory)
 })
 
 module.exports = router
