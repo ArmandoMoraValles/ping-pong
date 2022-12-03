@@ -60,7 +60,7 @@ router.post('/registerGame', async(req, res) => {
         const winnerPlayerId = gamesWonPlayerOne > gamesWonPlayerTwo ? playerOneId : playerTwoId
         let scoresData = [game.insertId, gamesWonPlayerOne, gamesWonPlayerTwo, winnerPlayerId]
 
-        await query('INSERT INTO scores (game_id, games_won_player_one, games_won_player_two, winner_player_id) VALUES (?,?,?,?)', scoresData)
+        await query('INSERT INTO scores (game_id, wins_player_one, wins_player_two, winner_player_id) VALUES (?,?,?,?)', scoresData)
             .then(()=>{
                 mysqlConnection.commit()
                 res.send(200)
