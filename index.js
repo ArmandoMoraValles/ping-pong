@@ -11,3 +11,5 @@ app.use('/api', require('./src/routes/gamesHistory.js'))
 app.use('/api', require('./src/routes/InterestingData.js'))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`))
+
+module.exports =  app
