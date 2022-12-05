@@ -21,7 +21,8 @@ router.get('/GetTopPlayers', async(req,res)=>{
     if(res.headersSent) return
 
     data.forEach(element => idTopPlayers.push(element.id))
-    
+    if(idTopPlayers.length < 3) return res.sendStatus(404)
+
     sql = `SELECT p.player_name, 
             count(s.winner_player_id) AS total_wins
             FROM players p
