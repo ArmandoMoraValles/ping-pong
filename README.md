@@ -1,4 +1,11 @@
 <h1>Ping-Pong</h1>
+
+<h3>Requirements</h3>
+<ol>
+<li>Some of the most recent versions of Node.js</li>
+<li>A MySQL database</li>
+</ol>
+
 <h2>How to run</h2>
 
 <h3>Setting up the database in your local environment</h3>
@@ -15,7 +22,7 @@ Normally this file is in the .gitignore but to speed up the tests it has been le
 
 <h3>Test the project</h3>
 <p>In the project you will find the necessary tests to check the operation of all endpoints. Just type the command "npm test" in your terminal (make sure that the terminal is in your project folder).</p>
-<p>You can also run 'nodemon index.js' command to open the backend server. The following urls will be available in the project</p>
+<p>You can also run 'nodemon index.js' command to open the backend server. The following urls will be available in the project, i recommend testing them using postman</p>
 <ul>
   <h2>Get routes</h2>
   <li>http://localhost:3000/api/getTopPlayers</li>
