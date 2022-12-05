@@ -6,7 +6,11 @@ const mysqlConnection = require('../DB/connection.js')
 router.post('/registerGame', async(req, res) => {
 
     const {playerOneName, playerTwoName, gamesWonPlayerOne, gamesWonPlayerTwo} = req.body
-        
+    if(!(playerOneName && playerTwoName && gamesWonPlayerOne && gamesWonPlayerTwo)){
+        res.sendStatus(400)
+        throw new Error('Insufficient data received')
+    }
+    
     let playerOneId = 0
     let playerTwoId = 0
 
@@ -71,14 +75,16 @@ router.post('/registerGame', async(req, res) => {
             })
         if(res.headersSent) return
         
-        const winnerPlayerId = gamesWonPlayerOne > gamesWonPlayerTwo ? playerOneId : playerTwoId
+        let winnerPlayerId = null
+        if(gamesWonPlayerOne > gamesWonPlayerTwo) winnerPlayerId = playerOneId
+        if(gamesWonPlayerOne < gamesWonPlayerTwo) winnerPlayerId = playerTwoId
 
         let scoresData = [game.insertId, gamesWonPlayerOne, gamesWonPlayerTwo, winnerPlayerId]
 
         await query('INSERT INTO scores (game_id, wins_player_one, wins_player_two, winner_player_id) VALUES (?,?,?,?)', scoresData)
             .then(()=>{
                 mysqlConnection.commit()
-                res.sendStatus(200)
+                res.sendStatus(201)
             })
             .catch((err) => {
                 mysqlConnection.rollback()
