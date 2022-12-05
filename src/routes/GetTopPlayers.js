@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const query = require('../functions/DBfunction.js')
+const query = require('../DB/functions.js')
 
 router.get('/GetTopPlayers', async(req,res)=>{
     
@@ -44,7 +44,7 @@ router.get('/GetTopPlayers', async(req,res)=>{
         })
     })
 
-    res.json(playersName).sendStatus(200)
+    res.json(playersName)
 })
 
 module.exports = router

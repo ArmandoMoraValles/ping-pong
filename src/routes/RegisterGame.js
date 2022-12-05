@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const query = require('../functions/DBfunction.js')
+const query = require('../DB/functions.js')
 const mysqlConnection = require('../DB/connection.js')
 
 router.post('/registerGame', async(req, res) => {

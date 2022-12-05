@@ -1,4 +1,4 @@
-const mysqlConnection = require('../DB/connection')
+const mysqlConnection = require('./connection')
 
 const query = async (sql, args) => {
     return await new Promise((resolve, reject) => {
