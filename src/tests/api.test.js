@@ -29,7 +29,7 @@ describe('Test all GET routes', () =>{
         return request(app)
             .get('/api/getTopPlayers')
             .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
+            .expect('Content-Type', 'application/json; charset=utf-8')
             .expect(response => {
                 if(response.body.length !==  3) throw Error('Expected 3 objects in the array')
             })
